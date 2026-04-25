@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meesho — India's Favourite Online Shopping App</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&family=Pacifico&family=Playfair+Display:ital,wght@1,700;1,900&family=Bebas+Neue&family=Oswald:wght@600;700&family=Righteous&family=Anton&family=Russo+One&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" title="Back to Top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- FLOATING CART -->
+<button class="floating-cart" id="floatingCart" title="Cart">
+  <i class="fas fa-shopping-bag"></i>
+  <span class="cart-count" id="cartCount">0</span>
+</button>
+
+<!-- HEADER -->
+<header class="header" id="mainHeader">
+  <div class="header-top">
+    <!-- LOGO -->
+    <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <img src="images/meesho-logo.png" alt="Meesho" class="logo-img" />
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div class="search-wrapper">
+      <div class="search-bar">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Try Saree, Kurti or Search by Product Code" autocomplete="off"/>
+        <button class="search-icon-btn" title="Search by Image">
+          <i class="fas fa-camera"></i>
+        </button>
+        <button class="search-icon-btn" title="Voice Search">
+          <i class="fas fa-microphone"></i>
+        </button>
+        <button class="search-btn" id="filterBtn" title="Filters" style="display:none;">
+          <i class="fas fa-sliders-h"></i>
+        </button>
+      </div>
+      <!-- Search Suggestions Dropdown -->
+      <div class="search-suggestions" id="searchSuggestions">
+        <div class="suggestion-section">
+          <p class="suggestion-label">Trending Searches</p>
+          <div class="suggestion-items" id="suggestionItems"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER ACTIONS -->
+    <div class="header-actions">
+      <button class="header-btn" title="Become a Supplier">
+        <i class="fas fa-store"></i>
+        <span>Become a Supplier</span>
+      </button>
+      <button class="header-btn" title="Investor Relations">
+        <i class="fas fa-chart-line"></i>
+        <span>Investor Relations</span>
+      </button>
+
+      <!-- PROFILE -->
+      <div class="profile-wrap">
+        <button class="header-btn" id="profileBtn" title="Profile">
+          <i class="fas fa-user"></i>
+          <span>Profile</span>
+        </button>
+        <div class="profile-dropdown" id="profileDropdown">
+          <div class="profile-header">
+            <div class="profile-avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <p class="profile-hello">Hello, User</p>
+              <p class="profile-sub">+91 98765 43210</p>
+            </div>
+          </div>
+          <a class="profile-link" href="#"><i class="fas fa-box"></i> My Orders</a>
+          <a class="profile-link" href="#"><i class="fas fa-heart"></i> My Wishlist</a>
+          <a class="profile-link" href="#"><i class="fas fa-tag"></i> My Coupons</a>
+          <a class="profile-link" href="#"><i class="fas fa-wallet"></i> Meesho Credits</a>
+          <a class="profile-link" href="#"><i class="fas fa-question-circle"></i> Help Center</a>
+          <div class="profile-divider"></div>
+          <p class="profile-section-label">Settings</p>
+          <div class="profile-link profile-toggle-row">
+            <span><i class="fas fa-moon"></i> Dark Mode</span>
+            <label class="switch">
+              <input type="checkbox" id="darkSwitch"/>
+              <span class="slider-round"></span>
+            </label>
+          </div>
+          <a class="profile-link" href="#"><i class="fas fa-language"></i> Language: English</a>
+          <a class="profile-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
+          <div class="profile-divider"></div>
+          <a class="profile-link logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CATEGORY NAV -->
+  <nav class="category-nav">
+    <div class="nav-categories" id="navCategories">
+      <div class="nav-item active" data-cat="all">
+        <span>All Categories</span>
+      </div>
+      <div class="nav-item" data-cat="women-ethnic">
+        <span>Women Ethnic</span>
+        <div class="mega-popup">
+          <div class="mega-col">
+            <h4>Sarees</h4>
+            <a href="#">Silk Sarees</a>
+            <a href="#">Cotton Sarees</a>
+            <a href="#">Banarasi Sarees</a>
+            <a href="#">Georgette Sarees</a>
+            <a href="#">Designer Sarees</a>
+          </div>
+          <div class="mega-col">
+            <h4>Kurtis</h4>
+            <a href="#">Anarkali</a>
+            <a href="#">Straight</a>
+            <a href="#">A-line</a>
+            <a href="#">Printed Kurtis</a>
+            <a href="#">Kurta Sets</a>
+          </div>
+          <div class="mega-col">
+            <h4>Suits & Lehenga</h4>
+            <a href="#">Salwar Suits</a>
+            <a href="#">Lehenga Choli</a>
+            <a href="#">Dupattas</a>
+            <a href="#">Patiala Suits</a>
+          </div>
+          <div class="mega-col">
+            <h4>Blouse & More</h4>
+            <a href="#">Blouses</a>
+            <a href="#">Petticoats</a>
+            <a href="#">Stoles</a>
+            <a href="#">Ethnic Bottoms</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item" data-cat="women-western">
+        <span>Women Western</span>
+        <div class="mega-popup">
+          <div class="mega-col">
+            <h4>Topwear</h4>
+            <a href="#">Tops</a>
+            <a href="#">T-shirts</a>
+            <a href="#">Shirts</a>
+            <a href="#">Sweatshirts</a>
+            <a href="#">Hoodies</a>
+          </div>
+          <div class="mega-col">
+            <h4>Bottomwear</h4>
+            <a href="#">Jeans</a>
+            <a href="#">Trousers</a>
+            <a href="#">Shorts</a>
+            <a href="#">Skirts</a>
+            <a href="#">Leggings</a>
+          </div>
+          <div class="mega-col">
+            <h4>Dresses & Sets</h4>
+            <a href="#">Dresses</a>
+            <a href="#">Co-ords</a>
+            <a href="#">Jumpsuits</a>
+            <a href="#">Bodysuits</a>
+          </div>
+          <div class="mega-col">
+            <h4>Loungewear</h4>
+            <a href="#">Nightwear</a>
+            <a href="#">Track Pants</a>
+            <a href="#">Innerwear</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item" data-cat="men">
+        <span>Men</span>
+        <div class="mega-popup">
+          <div class="mega-col">
+            <h4>Topwear</h4>
+            <a href="#">T-Shirts</a>
+            <a href="#">Casual Shirts</a>
+            <a href="#">Formal Shirts</a>
+            <a href="#">Sweatshirts</a>
+            <a href="#">Jackets</a>
+          </div>
+          <div class="mega-col">
+            <h4>Bottomwear</h4>
+            <a href="#">Jeans</a>
+            <a href="#">Trousers</a>
+            <a href="#">Track Pants</a>
+            <a href="#">Shorts</a>
+          </div>
+          <div class="mega-col">
+            <h4>Ethnic</h4>
+            <a href="#">Kurtas</a>
+            <a href="#">Sherwanis</a>
+            <a href="#">Dhotis</a>
+          </div>
+          <div class="mega-col">
+            <h4>Footwear</h4>
+            <a href="#">Sports Shoes</a>
+            <a href="#">Casual Shoes</a>
+            <a href="#">Sandals</a>
+            <a href="#">Formal Shoes</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item" data-cat="kids">
+        <span>Kids</span>
+        <div class="mega-popup">
+          <div class="mega-col">
+            <h4>Boys</h4>
+            <a href="#">T-Shirts</a>
+            <a href="#">Shirts</a>
+            <a href="#">Jeans</a>
+            <a href="#">Ethnic Wear</a>
+          </div>
+          <div class="mega-col">
+            <h4>Girls</h4>
+            <a href="#">Dresses</a>
+            <a href="#">Tops</a>
+            <a href="#">Lehenga Choli</a>
+            <a href="#">Skirts</a>
+          </div>
+          <div class="mega-col">
+            <h4>Toys</h4>
+            <a href="#">Soft Toys</a>
+            <a href="#">Educational</a>
+            <a href="#">Dolls</a>
+            <a href="#">Cars</a>
+          </div>
+          <div class="mega-col">
+            <h4>Accessories</h4>
+            <a href="#">School Bags</a>
+            <a href="#">Footwear</a>
+            <a href="#">Watches</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item" data-cat="home">
+        <span>Home & Kitchen</span>
+        <div class="mega-popup">
+          <div class="mega-col">
+            <h4>Bedroom</h4>
+            <a href="#">Bedsheets</a>
+            <a href="#">Pillows</a>
+            <a href="#">Blankets</a>
+            <a href="#">Mattresses</a>
+          </div>
+          <div class="mega-col">
+            <h4>Living</h4>
+            <a href="#">Curtains</a>
+            <a href="#">Cushion Covers</a>
+            <a href="#">Carpets</a>
+            <a href="#">Wall Decor</a>
+          </div>
+          <div class="mega-col">
+            <h4>Kitchen</h4>
+            <a href="#">Cookware</a>
+            <a href="#">Dinner Sets</a>
+            <a href="#">Storage</a>
+            <a href="#">Appliances</a>
+          </div>
+          <div class="mega-col">
+            <h4>Bath</h4>
+            <a href="#">Towels</a>
+            <a href="#">Bath Mats</a>
+            <a href="#">Toiletries</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item" data-cat="beauty">
+        <span>Beauty & Health</span>
+        <div class="mega-popup">
+          <div class="mega-col">
+            <h4>Makeup</h4>
+            <a href="#">Lipstick</a>
+            <a href="#">Foundation</a>
+            <a href="#">Eyeliner</a>
+            <a href="#">Kajal</a>
+          </div>
+          <div class="mega-col">
+            <h4>Skincare</h4>
+            <a href="#">Moisturisers</a>
+            <a href="#">Face Wash</a>
+            <a href="#">Serums</a>
+            <a href="#">Sunscreen</a>
+          </div>
+          <div class="mega-col">
+            <h4>Haircare</h4>
+            <a href="#">Shampoo</a>
+            <a href="#">Conditioner</a>
+            <a href="#">Hair Oil</a>
+          </div>
+          <div class="mega-col">
+            <h4>Wellness</h4>
+            <a href="#">Vitamins</a>
+            <a href="#">Yoga</a>
+            <a href="#">Personal Care</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item" data-cat="jewellery">
+        <span>Jewellery</span>
+        <div class="mega-popup">
+          <div class="mega-col">
+            <h4>Earrings</h4>
+            <a href="#">Studs</a>
+            <a href="#">Jhumkas</a>
+            <a href="#">Hoops</a>
+            <a href="#">Drops</a>
+          </div>
+          <div class="mega-col">
+            <h4>Necklaces</h4>
+            <a href="#">Pendants</a>
+            <a href="#">Chains</a>
+            <a href="#">Chokers</a>
+            <a href="#">Mangalsutras</a>
+          </div>
+          <div class="mega-col">
+            <h4>Bracelets</h4>
+            <a href="#">Bangles</a>
+            <a href="#">Kadas</a>
+            <a href="#">Bracelets</a>
+          </div>
+          <div class="mega-col">
+            <h4>More</h4>
+            <a href="#">Rings</a>
+            <a href="#">Anklets</a>
+            <a href="#">Nose Pins</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item" data-cat="bags">
+        <span>Bags & Footwear</span>
+        <div class="mega-popup">
+          <div class="mega-col">
+            <h4>Women Bags</h4>
+            <a href="#">Handbags</a>
+            <a href="#">Sling Bags</a>
+            <a href="#">Clutches</a>
+            <a href="#">Backpacks</a>
+          </div>
+          <div class="mega-col">
+            <h4>Women Footwear</h4>
+            <a href="#">Heels</a>
+            <a href="#">Flats</a>
+            <a href="#">Sandals</a>
+            <a href="#">Sneakers</a>
+          </div>
+          <div class="mega-col">
+            <h4>Men Footwear</h4>
+            <a href="#">Sports Shoes</a>
+            <a href="#">Casual Shoes</a>
+            <a href="#">Formal Shoes</a>
+          </div>
+          <div class="mega-col">
+            <h4>Travel</h4>
+            <a href="#">Trolleys</a>
+            <a href="#">Duffle Bags</a>
+            <a href="#">Travel Wallets</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item" data-cat="electronics">
+        <span>Electronics</span>
+        <div class="mega-popup">
+          <div class="mega-col">
+            <h4>Audio</h4>
+            <a href="#">Earphones</a>
+            <a href="#">Headphones</a>
+            <a href="#">Speakers</a>
+            <a href="#">Earbuds</a>
+          </div>
+          <div class="mega-col">
+            <h4>Mobile Accessories</h4>
+            <a href="#">Chargers</a>
+            <a href="#">Cables</a>
+            <a href="#">Cases & Covers</a>
+            <a href="#">Power Banks</a>
+          </div>
+          <div class="mega-col">
+            <h4>Wearables</h4>
+            <a href="#">Smart Watches</a>
+            <a href="#">Fitness Bands</a>
+          </div>
+          <div class="mega-col">
+            <h4>Home Tech</h4>
+            <a href="#">Trimmers</a>
+            <a href="#">Hair Dryers</a>
+            <a href="#">Smart Bulbs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- ACTIVE FILTER CHIPS -->
+<div class="filter-chips-bar" id="filterChipsBar" style="display:none;">
+  <span class="chips-label">Active Filters:</span>
+  <div id="activeChips"></div>
+  <button class="clear-all-btn" onclick="clearAllFilters()">Clear All</button>
+</div>
+
+<!-- HERO BANNER -->
+<section class="hero-wrap">
+<div class="hero-banner">
+  <div class="banner-slider" id="bannerSlider">
+    <div class="banner-slide active" style="background: linear-gradient(135deg, #fce4f1 0%, #f58ab8 100%);">
+      <div class="banner-content">
+        <p class="banner-tag">New Collection</p>
+        <h1 class="banner-title">Festive Season Sale</h1>
+        <p class="banner-sub">Up to 80% off on Ethnic Wear</p>
+        <button class="banner-cta">Shop Now</button>
+      </div>
+      <div class="banner-img-wrap">
+        <img src="https://img.freepik.com/premium-vector/vector-illustration-diwali-festive-season-sale-banner_181203-737.jpg" alt="Festive Sale"/>
+      </div>
+    </div>
+    <div class="banner-slide" style="background: linear-gradient(135deg, #e8f0ff 0%, #8db0f5 100%);">
+      <div class="banner-content">
+        <p class="banner-tag">Men's Edition</p>
+        <h1 class="banner-title">Casual & Formal Styles</h1>
+        <p class="banner-sub">Starting at just ₹199</p>
+        <button class="banner-cta">Explore</button>
+      </div>
+      <div class="banner-img-wrap">
+        <img src="https://us.lawrencepur.com/cdn/shop/files/11_1.jpg?v=1727439604" alt="Men Fashion"/>
+      </div>
+    </div>
+    <div class="banner-slide" style="background: linear-gradient(135deg, #ad96de 20%, #c145ee 70%);">
+      <div class="banner-content">
+        <p class="banner-tag">Home Decor</p>
+        <h1 class="banner-title">Transform Your Space</h1>
+        <p class="banner-sub">Bedsheets, curtains & more</p>
+        <button class="banner-cta">Discover</button>
+      </div>
+      <div class="banner-img-wrap">
+        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop" alt="Home Decor"/>
+      </div>
+    </div>
+  </div>
+  <div class="banner-dots" id="bannerDots">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+  </div>
+  <button class="banner-arrow prev" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+  <button class="banner-arrow next" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<!-- DOWNLOAD APP QR CARD -->
+<aside class="app-qr-card">
+  <div class="qr-left">
+    <p class="qr-tag">Meesho App</p>
+    <h3 class="qr-title">Shop on the go</h3>
+    <p class="qr-sub">Scan to download the app</p>
+    <div class="qr-stores">
+      <span class="store-pill"><i class="fab fa-google-play"></i> Google Play</span>
+      <span class="store-pill"><i class="fab fa-apple"></i> App Store</span>
+    </div>
+  </div>
+  <div class="qr-right">
+    <div class="qr-img-wrap">
+      <img src="images/app-qr.png" alt="Download Meesho App QR" loading="lazy"/>
+    </div>
+    <p class="qr-caption">Scan with camera</p>
+  </div>
+</aside>
+</section>
+
+<!-- CIRCULAR CATEGORY SHORTCUTS -->
+<section class="circle-cats" aria-label="Shop by Category">
+  <div class="circle-cats-inner">
+    <div class="circle-cat" data-cat="women-ethnic">
+      <div class="circle-img"><img src="https://tse4.mm.bing.net/th/id/OIP.TvMJC0det0x8t8bhgK7U9wHaL1?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Ethnic Wear"/></div>
+      <p>Ethnic Wear</p>
+    </div>
+    <div class="circle-cat" data-cat="women-western">
+      <div class="circle-img"><img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=200&h=200&fit=crop" alt="Western Dresses"/></div>
+      <p>Western Dresses</p>
+    </div>
+    <div class="circle-cat" data-cat="men">
+      <div class="circle-img"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200&h=200&fit=crop" alt="Menswear"/></div>
+      <p>Menswear</p>
+    </div>
+    <div class="circle-cat" data-cat="bags">
+      <div class="circle-img"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&h=200&fit=crop" alt="Footwear"/></div>
+      <p>Footwear</p>
+    </div>
+    <div class="circle-cat" data-cat="home">
+      <div class="circle-img"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&h=200&fit=crop" alt="Home Decor"/></div>
+      <p>Home Decor</p>
+    </div>
+    <div class="circle-cat" data-cat="beauty">
+      <div class="circle-img"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=200&h=200&fit=crop" alt="Beauty"/></div>
+      <p>Beauty</p>
+    </div>
+    <div class="circle-cat" data-cat="bags">
+      <div class="circle-img"><img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=200&h=200&fit=crop" alt="Accessories"/></div>
+      <p>Accessories</p>
+    </div>
+    <div class="circle-cat" data-cat="home">
+      <div class="circle-img"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=200&h=200&fit=crop" alt="Grocery"/></div>
+      <p>Grocery</p>
+    </div>
+    <div class="circle-cat" data-cat="jewellery">
+      <div class="circle-img"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=200&h=200&fit=crop" alt="Jewellery"/></div>
+      <p>Jewellery</p>
+    </div>
+    <div class="circle-cat" data-cat="electronics">
+      <div class="circle-img"><img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=200&h=200&fit=crop" alt="Electronics"/></div>
+      <p>Electronics</p>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS SLIDING STRIP -->
+<section class="brands-strip" aria-label="Top Brands">
+  <div class="brands-track">
+    <!-- duplicated set for seamless loop -->
+    <div class="brand-pill"><span class="brand-text bt-mamaearth">mamaearth<i class="leaf">🌱</i></span></div>
+    <div class="brand-pill"><span class="brand-text bt-wildstone">WILD<br/><b>STONE</b></span></div>
+    <div class="brand-pill"><span class="brand-text bt-plum">pl<i>u</i>m</span></div>
+    <div class="brand-pill"><span class="brand-text bt-nivea">NIVEA</span></div>
+    <div class="brand-pill"><span class="brand-text bt-himalaya">Himalaya</span></div>
+    <div class="brand-pill"><span class="brand-text bt-mi">MI</span></div>
+    <div class="brand-pill"><span class="brand-text bt-bata">Bata</span></div>
+    <div class="brand-pill"><span class="brand-text bt-wow">W<i>O</i>W</span></div>
+    <div class="brand-pill"><span class="brand-text bt-boat">boAt<b>!</b></span></div>
+    <div class="brand-pill"><span class="brand-text bt-puma">PUMA</span></div>
+    <div class="brand-pill"><span class="brand-text bt-lakme">Lakmé</span></div>
+    <div class="brand-pill"><span class="brand-text bt-nykaa">Nykaa</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="brand-pill"><span class="brand-text bt-mamaearth">mamaearth<i class="leaf">🌱</i></span></div>
+    <div class="brand-pill"><span class="brand-text bt-wildstone">WILD<br/><b>STONE</b></span></div>
+    <div class="brand-pill"><span class="brand-text bt-plum">pl<i>u</i>m</span></div>
+    <div class="brand-pill"><span class="brand-text bt-nivea">NIVEA</span></div>
+    <div class="brand-pill"><span class="brand-text bt-himalaya">Himalaya</span></div>
+    <div class="brand-pill"><span class="brand-text bt-mi">MI</span></div>
+    <div class="brand-pill"><span class="brand-text bt-bata">Bata</span></div>
+    <div class="brand-pill"><span class="brand-text bt-wow">W<i>O</i>W</span></div>
+    <div class="brand-pill"><span class="brand-text bt-boat">boAt<b>!</b></span></div>
+    <div class="brand-pill"><span class="brand-text bt-puma">PUMA</span></div>
+    <div class="brand-pill"><span class="brand-text bt-lakme">Lakmé</span></div>
+    <div class="brand-pill"><span class="brand-text bt-nykaa">Nykaa</span></div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT: SIDEBAR + PRODUCTS -->
+<main class="main-content">
+
+  <!-- SIDEBAR FILTERS (hidden by default; shows after search) -->
+  <aside class="sidebar" id="sidebar" style="display:none;">
+    <div class="sidebar-head">
+      <h2 class="sidebar-title">Filters</h2>
+      <button class="sidebar-close-btn" onclick="closeSidebar()" title="Close"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- PRICE -->
+    <div class="filter-section">
+      <div class="filter-header" onclick="toggleFilter('price')">
+        <span class="filter-title">Price</span>
+        <i class="fas fa-chevron-up" id="price-icon"></i>
+      </div>
+      <div class="filter-body" id="price-body">
+        <div class="price-slider-wrap">
+          <div class="price-display">
+            <span>₹<span id="minVal">100</span></span>
+            <span>₹<span id="maxVal">10000</span>+</span>
+          </div>
+          <div class="range-slider">
+            <div class="range-track" id="rangeTrack"></div>
+            <input type="range" id="minRange" min="100" max="10000" value="100" step="50"/>
+            <input type="range" id="maxRange" min="100" max="10000" value="10000" step="50"/>
+          </div>
+          <div class="price-presets">
+            <button class="preset-btn" onclick="setPrice(100,499)">Under ₹499</button>
+            <button class="preset-btn" onclick="setPrice(500,999)">₹500-999</button>
+            <button class="preset-btn" onclick="setPrice(1000,2000)">₹1k-2k</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLOR -->
+    <div class="filter-section">
+      <div class="filter-header" onclick="toggleFilter('color')">
+        <span class="filter-title">Color</span>
+        <i class="fas fa-chevron-up" id="color-icon"></i>
+      </div>
+      <div class="filter-body" id="color-body">
+        <div class="color-list" id="colorList">
+          <label class="color-option"><input type="checkbox" value="Black" onchange="addColorFilter(this)"/><span class="color-dot" style="background:#1a1a1a;border:1px solid #ddd;"></span><span class="color-name">Black</span></label>
+          <label class="color-option"><input type="checkbox" value="Blue" onchange="addColorFilter(this)"/><span class="color-dot" style="background:#1877f2;"></span><span class="color-name">Blue</span></label>
+          <label class="color-option"><input type="checkbox" value="Pink" onchange="addColorFilter(this)"/><span class="color-dot" style="background:#ff6eb4;"></span><span class="color-name">Pink</span></label>
+          <label class="color-option"><input type="checkbox" value="White" onchange="addColorFilter(this)"/><span class="color-dot" style="background:#fff;border:1.5px solid #ccc;"></span><span class="color-name">White</span></label>
+          <label class="color-option"><input type="checkbox" value="Green" onchange="addColorFilter(this)"/><span class="color-dot" style="background:#2d9e2d;"></span><span class="color-name">Green</span></label>
+          <label class="color-option"><input type="checkbox" value="Red" onchange="addColorFilter(this)"/><span class="color-dot" style="background:#e42b2b;"></span><span class="color-name">Red</span></label>
+          <label class="color-option"><input type="checkbox" value="Yellow" onchange="addColorFilter(this)"/><span class="color-dot" style="background:#ffd700;"></span><span class="color-name">Yellow</span></label>
+          <label class="color-option"><input type="checkbox" value="Maroon" onchange="addColorFilter(this)"/><span class="color-dot" style="background:#800000;"></span><span class="color-name">Maroon</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISCOUNT -->
+    <div class="filter-section">
+      <div class="filter-header" onclick="toggleFilter('discount')">
+        <span class="filter-title">Discount Range</span>
+        <i class="fas fa-chevron-up" id="discount-icon"></i>
+      </div>
+      <div class="filter-body" id="discount-body">
+        <div class="discount-list">
+          <label class="discount-option"><input type="radio" name="discount" value="10"/> 10% and above</label>
+          <label class="discount-option"><input type="radio" name="discount" value="30"/> 30% and above</label>
+          <label class="discount-option"><input type="radio" name="discount" value="50"/> 50% and above</label>
+          <label class="discount-option"><input type="radio" name="discount" value="70"/> 70% and above</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- RATING -->
+    <div class="filter-section">
+      <div class="filter-header" onclick="toggleFilter('rating')">
+        <span class="filter-title">Customer Ratings</span>
+        <i class="fas fa-chevron-up" id="rating-icon"></i>
+      </div>
+      <div class="filter-body" id="rating-body">
+        <div class="rating-list">
+          <label class="rating-option"><input type="radio" name="rating" value="4"/> 4★ &amp; above</label>
+          <label class="rating-option"><input type="radio" name="rating" value="3"/> 3★ &amp; above</label>
+          <label class="rating-option"><input type="radio" name="rating" value="2"/> 2★ &amp; above</label>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- PRODUCT GRID -->
+  <section class="products-section" id="productsSection">
+    <div class="products-header">
+      <h2 class="products-title" id="productsTitle">Products For You</h2>
+      <div class="sort-wrap">
+        <label>Sort by:</label>
+        <select class="sort-select" id="sortSelect" onchange="applySort()">
+          <option value="relevance">Relevance</option>
+          <option value="lowhigh">Price: Low to High</option>
+          <option value="highlow">Price: High to Low</option>
+          <option value="rating">Customer Rating</option>
+          <option value="new">Newest First</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SKELETON LOADING -->
+    <div class="skeleton-grid" id="skeletonGrid">
+      <div class="skeleton-card"><div class="skeleton-img shimmer"></div><div class="skeleton-line shimmer"></div><div class="skeleton-line short shimmer"></div></div>
+      <div class="skeleton-card"><div class="skeleton-img shimmer"></div><div class="skeleton-line shimmer"></div><div class="skeleton-line short shimmer"></div></div>
+      <div class="skeleton-card"><div class="skeleton-img shimmer"></div><div class="skeleton-line shimmer"></div><div class="skeleton-line short shimmer"></div></div>
+      <div class="skeleton-card"><div class="skeleton-img shimmer"></div><div class="skeleton-line shimmer"></div><div class="skeleton-line short shimmer"></div></div>
+      <div class="skeleton-card"><div class="skeleton-img shimmer"></div><div class="skeleton-line shimmer"></div><div class="skeleton-line short shimmer"></div></div>
+      <div class="skeleton-card"><div class="skeleton-img shimmer"></div><div class="skeleton-line shimmer"></div><div class="skeleton-line short shimmer"></div></div>
+    </div>
+
+    <div class="product-grid" id="productGrid" style="display:none;"></div>
+    <div class="empty-results" id="emptyResults" style="display:none;">
+      <i class="fas fa-search"></i>
+      <p>No products match your search.</p>
+      <button onclick="clearSearch()">Clear search</button>
+    </div>
+  </section>
+</main>
+
+<!-- QUICK VIEW MODAL -->
+<div class="quick-view-overlay" id="quickViewOverlay" onclick="closeQuickView()">
+  <div class="quick-view-modal" onclick="event.stopPropagation()">
+    <button class="qv-close" onclick="closeQuickView()"><i class="fas fa-times"></i></button>
+    <div class="qv-content" id="qvContent"></div>
+  </div>
+</div>
+
+<!-- CART MODAL -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()">
+  <div class="cart-drawer" onclick="event.stopPropagation()">
+    <div class="cart-header">
+      <h2 class="cart-title">My Cart</h2>
+      <button class="cart-close" onclick="closeCart()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="empty-cart">
+        <i class="fas fa-shopping-bag"></i>
+        <p>Your cart is empty</p>
+        <button onclick="closeCart()">Continue Shopping</button>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-total">Total: ₹<span id="cartTotal">0</span></div>
+      <button class="checkout-btn">Proceed to Checkout <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
